@@ -1,0 +1,14 @@
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+ExecStartPre={REMOTE_ROOT}/softs/nginx/sbin/nginx -t
+ExecStart={REMOTE_ROOT}/softs/nginx/sbin/nginx
+ExecReload={REMOTE_ROOT}/softs/nginx/sbin/nginx -s reload
+ExecStop={REMOTE_ROOT}/softs/nginx/sbin/nginx -s stop
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Redis data structure server
+Documentation=https://redis.io/documentation
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart={REMOTE_ROOT}/softs/redis/bin/redis-server {REMOTE_ROOT}/confs/redis/{port}.conf
+Type=forking
+PrivateTmp=true
+WorkingDirectory={REMOTE_ROOT}/softs/redis
+
+[Install]
+WantedBy=multi-user.target

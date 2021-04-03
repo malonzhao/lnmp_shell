@@ -1,0 +1,14 @@
+[Unit]
+Description=The PHP FastCGI Process Manager
+After=syslog.target network.target
+
+[Service]
+Type=forking
+PIDFile={REMOTE_ROOT}/run/php/php-fpm.pid
+ExecStart={REMOTE_ROOT}/softs/php/sbin/php-fpm -c {REMOTE_ROOT}/confs/php/php.ini -y {REMOTE_ROOT}/confs/php/php-fpm.conf
+ExecReload=/bin/kill -USR2 MAINPID
+ExecStop=/bin/kill −INT MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

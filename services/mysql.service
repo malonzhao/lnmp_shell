@@ -1,0 +1,16 @@
+[Unit]
+Description=MySQL Server
+After=network.target
+[Install]
+WantedBy=multi-user.target
+[Service]
+User=mysql
+Group=mysql
+Type=notify
+ExecStart={REMOTE_ROOT}/softs/mysql/bin/mysqld
+TimeoutSec=0
+LimitNOFILE = 10000
+Restart=on-failure
+RestartPreventExitStatus=1
+RestartForceExitStatus=16
+Environment=MYSQLD_PARENT_PID=1
